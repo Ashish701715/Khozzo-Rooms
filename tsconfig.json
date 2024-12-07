@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".", // This sets the base directory for relative paths
     "paths": {
-      "@/*": ["component/*"]
+      "@/*": ["./src/*"]
     },
     "target": "ESNext",
     "useDefineForClassFields": true,
