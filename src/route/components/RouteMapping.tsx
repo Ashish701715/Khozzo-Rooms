@@ -3,12 +3,13 @@ import { lazy, Suspense } from "react";
 const Home = lazy(() => import('../../App'));
 const AuthPage = lazy(() => import('../../features/Auth/layout'));
 const Table = lazy(() => import('../../layouts/Table'));
+const TwoFactor = lazy(() => import('../../features/Auth/Two_factor'));
 class RouteMapping {
     routes = [
         {
-            path: '/',
+            path: '/dashboard/admin',
             component: Home,
-            layout: 'Blank',
+            layout: '',
             className: '',
             is_Child: false,
         },
@@ -22,6 +23,13 @@ class RouteMapping {
         {
             path: '/table',
             component: Table,
+            layout: '',
+            className: '',
+            is_Child: false,
+        },
+        {
+            path: '/auth/two-factor/:client_id',
+            component: TwoFactor,
             layout: 'Blank',
             className: '',
             is_Child: false,
@@ -30,7 +38,7 @@ class RouteMapping {
 
     renderComponent(Component: any) {
         return (
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div>laoding page...</div>}>
                 <Component />
             </Suspense>
         );
