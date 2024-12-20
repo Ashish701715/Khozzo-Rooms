@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('/src/globals.css');
-
 .font-medium {
   font-weight: 400 !important;
   color: #4f4c4ce6;
@@ -21,7 +19,7 @@
     --input: 0 0% 89.8%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --primary: #006FEE;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
@@ -44,6 +42,7 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --borderRadius: 5px;
   }
 
   .dark {
@@ -86,18 +85,35 @@
   * {
     @apply border-border;
   }
-
-  body {
-    @apply font-sans antialiased bg-background text-foreground;
-  }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+.rounded-btn {
+  border-radius: var(--borderRadius);
+}
 
-  body {
-    @apply bg-background text-foreground;
+.input-lable {
+  color: rgba(0, 0, 0, 0.76);
+  font-weight: 500;
+}
+
+.table-body-hover:hover {
+  background-color: #f5f5f5;
+  box-shadow: 2px 3px 6px 0px #bcbcbc;
+}
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side, #ffa516 94%, #0000) top/8px 8px no-repeat,
+    conic-gradient(#0000 30%, #ffa516);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: l13 1s infinite linear;
+}
+
+@keyframes l13 {
+  100% {
+    transform: rotate(1turn)
   }
 }

@@ -2,16 +2,19 @@ import React, { useState } from "react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { twoFactorAuthenticate } from "@/utils/api"
 import { Button, InputOtp } from "@nextui-org/react"
-import { useNavigate, useParams } from "react-router"
+import { useLocation, useNavigate, useParams } from "react-router"
 import { setLocalStorage } from "@/common/localStore"
 export default function TwoFactorAuthPage() {
 
     const [ErrorMessage, setErrorMessage] = useState<string>('');
-    const { client_id } = useParams()
+    const location = useLocation();
+
+    const queryParams = new URLSearchParams(location.search);
+    const clientSecret = queryParams.get('client_secret');
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [formData, setFormData] = React.useState<{ otp: string, client_id: string }>({
         otp: '',
-        client_id: client_id || '',
+        client_id: clientSecret || '',
     });
 
     const route = useNavigate();
@@ -44,7 +47,7 @@ export default function TwoFactorAuthPage() {
     }
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <Card className="w-[550px]">
+            <Card className="w-[550px] bg-white">
                 <CardHeader className="space-y-1">
                     <CardTitle className="text-2xl font-bold text-center">Two-Factor Authentication</CardTitle>
                     <CardDescription className="text-center">

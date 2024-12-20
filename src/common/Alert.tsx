@@ -4,7 +4,7 @@ import { AlertCircle, X as CircleX } from "lucide-react";
 
 interface DangerProps {
     children: React.ReactNode | React.ReactNode[];
-    onClose?: () => void; 
+    onClose?: () => void;
 }
 
 export const Danger: React.FC<DangerProps> = ({ children, onClose }) => {
@@ -30,10 +30,9 @@ export const Danger: React.FC<DangerProps> = ({ children, onClose }) => {
     const isVisible = counter > 0 && !!children && (!Array.isArray(children) || children.length > 0);
     return (
         <>
-
             <Alert
                 variant="destructive"
-                className={`${isVisible ? 'visible h-[100%]' : 'invisible h-[120px]'} flex flex-col space-y-2  transition-all duration-5000 `}
+                className={`${isVisible ? 'block' : 'hidden '} flex flex-col space-y-2  transition-all duration-5000 `}
             >
                 {onClose && (
                     <div className="flex justify-end">

@@ -1,10 +1,10 @@
 import RouteMapping from "./components/RouteMapping";
-import { BrowserRouter as Router, Route, Routes } from "react-router";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router";  // Updated to use correct import
 import Layout from "./../layouts/Layout";
-
 const routeMapping = new RouteMapping();
 
 function AppRouter() {
+
     return (
         <Router>
             <Routes>

@@ -1,0 +1,182 @@
+{
+	"form_id": "0001",
+	"page_config": {
+		"title": "Properties Add"
+	},
+	"config": {
+		"form_information": {
+			"form_headings": "Add New Properties",
+			"section": [
+				{
+					"section_title": "Properties Information",
+					"fields": [
+						{
+							"field_id": "property_name_001",
+							"field_name": "property_namessss",
+							"field_type": "text",
+							"label": "Property Name",
+							"placeholder": "Enter property name",
+							"required": true
+						},
+						{
+							"field_id": "property_type_002",
+							"field_name": "property_type",
+							"field_type": "select",
+							"label": "Property Type",
+							"options": [
+								"Apartment",
+								"House",
+								"Villa",
+								"Condo",
+								"Studio"
+							],
+							"required": true
+						},
+						{
+							"field_id": "location_003",
+							"field_name": "location",
+							"field_type": "text",
+							"label": "Location",
+							"placeholder": "Enter location",
+							"required": true
+						},
+						{
+							"field_id": "area_size_004",
+							"field_name": "area_size",
+							"field_type": "number",
+							"label": "Area Size (sq ft)",
+							"placeholder": "Enter area size",
+							"required": true
+						},
+						{
+							"field_id": "num_bedrooms_005",
+							"field_name": "num_bedrooms",
+							"field_type": "number",
+							"label": "Number of Bedrooms",
+							"placeholder": "Enter number of bedrooms",
+							"required": true
+						},
+						{
+							"field_id": "num_bathrooms_006",
+							"field_name": "num_bathrooms",
+							"field_type": "number",
+							"label": "Number of Bathrooms",
+							"placeholder": "Enter number of bathrooms",
+							"required": true
+						},
+						{
+							"field_id": "price_007",
+							"field_name": "price",
+							"field_type": "number",
+							"label": "Price",
+							"placeholder": "Enter price",
+							"required": true
+						},
+						{
+							"field_id": "currency_008",
+							"field_name": "currency",
+							"field_type": "select",
+							"label": "Currency",
+							"options": [
+								"USD",
+								"EUR",
+								"INR",
+								"GBP"
+							],
+							"required": true
+						},
+						{
+							"field_id": "owner_name_009",
+							"field_name": "owner_name",
+							"field_type": "text",
+							"label": "Owner Name",
+							"placeholder": "Enter owner's name",
+							"required": true
+						},
+						{
+							"field_id": "owner_contact_number_010",
+							"field_name": "owner_contact_number",
+							"field_type": "text",
+							"label": "Owner Contact Number",
+							"placeholder": "Enter contact number",
+							"required": true
+						},
+						{
+							"field_id": "owner_email_011",
+							"field_name": "owner_email",
+							"field_type": "email",
+							"label": "Owner Email",
+							"placeholder": "Enter owner's email",
+							"required": true
+						},
+						{
+							"field_id": "property_condition_012",
+							"field_name": "property_condition",
+							"field_type": "select",
+							"label": "Property Condition",
+							"options": [
+								"New",
+								"Resale",
+								"Under Construction"
+							],
+							"required": true
+						}
+					]
+				},
+				{
+					"section_title": "Additional Features",
+					"fields": [
+						{
+							"field_id": "balcony_013",
+							"field_name": "balcony",
+							"field_type": "checkbox",
+							"label": "Balcony",
+							"required": false
+						},
+						{
+							"field_id": "furnished_status_014",
+							"field_name": "furnished_status",
+							"field_type": "select",
+							"label": "Furnished Status",
+							"options": [
+								"Furnished",
+								"Unfurnished",
+								"Semi-Furnished"
+							],
+							"required": false
+						},
+						{
+							"field_id": "swimming_pool_015",
+							"field_name": "swimming_pool",
+							"field_type": "checkbox",
+							"label": "Swimming Pool",
+							"required": false
+						},
+						{
+							"field_id": "parking_available_016",
+							"field_name": "parking_available",
+							"field_type": "checkbox",
+							"label": "Parking Available",
+							"required": false
+						},
+						{
+							"field_id": "garden_017",
+							"field_name": "garden",
+							"field_type": "checkbox",
+							"label": "Garden",
+							"required": false
+						},
+						{
+							"field_id": "view_type_018",
+							"field_name": "view_type",
+							"field_type": "text",
+							"label": "View Type",
+							"placeholder": "Enter view type",
+							"required": false
+						}
+					]
+				}
+			]
+		}
+	}
+}

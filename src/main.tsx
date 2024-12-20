@@ -7,12 +7,11 @@ import ErrorBoundary from './layouts/ErrorBoundary';
 import { NextUIProvider } from '@nextui-org/react'
 import { Provider } from 'react-redux';
 import { createStore } from 'redux'
-import rootReducer from './reducers'
-const store = createStore(rootReducer)
-
+import rootReducer from './reducers/store'
+import "/src/assets/style/globalScroll.css";
 
 createRoot(document.getElementById('root')!).render(
-  <Provider store={store}>
+  <Provider store={rootReducer}>
     <StrictMode>
       <NextUIProvider>
         <ErrorBoundary>

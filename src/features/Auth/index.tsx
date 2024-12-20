@@ -27,18 +27,22 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 setError(response?.error)
             } else {
                 setIsLoading(false)
-                route(`/auth/two-factor/${encodeURIComponent(response?.data?.client_id)}`)
+                route(`/auth/two-factor?client_secret=${encodeURIComponent(response?.data?.client_id)}`)
             }
         } catch (error) {
             console.error(error)
             setIsLoading(false)
         }
     }
+
     return (
         <div className={cn("grid gap-6", className)} {...props}>
-            <Danger>
-                {Error}
-            </Danger>
+            {Error.length > 0 && (
+                <Danger>
+                    {Error}
+                </Danger>
+            )}
+
             <form onSubmit={onSubmit}>
                 <div className="grid gap-4">
                     <div className="grid gap-2">

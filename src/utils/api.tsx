@@ -4,6 +4,8 @@ const endpoints = {
     login: "/admin/auth/login",
     register: "/api/register",
     otp: "admin/auth/two-factor",
+    addProperty: "/api/add/property",
+    PropertyList: "/api/list/property"
 };
 
 export const googleLogin = () => {
@@ -47,3 +49,41 @@ export const twoFactorAuthenticate = async (body: any, customHeaders: Record<str
         throw error;
     }
 };
+
+
+export const addNewProperty = async (body: any, customHeaders: Record<string, any> = {}) => {
+    try {
+        const response = await apiClient.post(endpoints?.addProperty, body, {
+            headers: customHeaders,
+        });
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
+
+
+export const fetchCountry = async () => {
+    try {
+        const response = await apiClient.get('https://restcountries.com/v3.1/all?fields=name,flags');
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
+
+export const PropertyListApi = async (body: any = {}, customHeaders: Record<string, any> = {}) => {
+    try {
+        const response = await apiClient.post(endpoints?.PropertyList, body, {
+            headers: customHeaders,
+        });
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
+
+
