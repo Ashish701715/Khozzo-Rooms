@@ -34,7 +34,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             setIsLoading(false)
         }
     }
-
     return (
         <div className={cn("grid gap-6", className)} {...props}>
             <Danger>
