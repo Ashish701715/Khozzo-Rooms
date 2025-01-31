@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button'
 import { useEffect, useReducer } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setTitle } from '@/reducers/documentSlice'
-import { login } from '@/reducers'
 import { Link, useLocation } from 'react-router'
 
 // This is sample data - replace with your actual data

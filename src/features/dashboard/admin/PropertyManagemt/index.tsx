@@ -19,7 +19,6 @@ export default function Index() {
                 owner_name 
                 owner_contact_number 
                 owner_email 
-                
               } 
               property_address { 
                 address 
@@ -33,7 +32,10 @@ export default function Index() {
         `,
         variables: {},
         operationName: "GetPropertyList",
-        search: searchText
+        search: JSON.parse(JSON.stringify({
+            name: 'ashish',
+            classs:10
+        }))
     })
 
     const [PropertyList, setPropertyList] = useState([]);
