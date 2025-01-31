@@ -65,17 +65,17 @@ const data = {
             title: "Payment - Services",
             items: [
                 {
-                    title: "Design Engineering",
+                    title: "Paymment History",
                     url: "#",
                     icon: Frame,
                 },
                 {
-                    title: "Sales & Marketing",
+                    title: "Payment Settings",
                     url: "#",
                     icon: PieChart,
                 },
                 {
-                    title: "Travel",
+                    title: "Payment Reports",
                     url: "#",
                     icon: Map,
                 },

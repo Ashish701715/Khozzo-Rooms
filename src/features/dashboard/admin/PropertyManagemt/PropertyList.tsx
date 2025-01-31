@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { setSearchText } from '../../../../reducers/searchSlice';
+import { Link, NavLink } from 'react-router';
 
 
 
@@ -27,7 +28,7 @@ export default function PropertyListComponents(props: any) {
 
         return (() => clearTimeout(timeOut));
     }, [searchInput])
-    
+
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setSearchInput(value);
@@ -36,9 +37,13 @@ export default function PropertyListComponents(props: any) {
     return (
         <div className="addProperty p-4 bg-gray-50 rounded-lg shadow-md">
             <div className='mb-4 flex justify-between items-center'>
-                <Button color='primary' size='sm'>
-                    <Plus strokeWidth={2} /> Add Property
+
+                <Button color='primary' size='sm' className='flex items-center rounded-[2px]'>
+                    <NavLink to={'/property/add'} className='flex items-center'>
+                        <Plus strokeWidth={2} /> Add Property
+                    </NavLink>
                 </Button>
+
                 <div className='flex gap-2'>
                     <Input onChange={handleSearchChange} size='sm' placeholder='Search...' className='w-[200px] bg-white' startContent={<Search />} />
                     <Button size='sm' className='rounded-sm bg-white border' startContent={<Filter size={15} />}>Filter</Button>
@@ -86,7 +91,7 @@ export default function PropertyListComponents(props: any) {
                 </div>
 
                 <div className='border-t table-footer flex justify-between items-center p-2'>
-                    <Pagination isCompact showControls initialPage={1} total={10} />
+                    <Pagination isCompact showControls initialPage={0} total={0} />
                     <Select>
                         <SelectTrigger className="w-[150px]">
                             <SelectValue placeholder="Rows Per Page" />
