@@ -78,7 +78,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                     </Button>
 
                     <div className="grid gap-4">
-                        <Button disabled={isLoading} type="button" variant="outline" onClick={googleLogin}>
+                        <Button disabled={isLoading} type="button" variant="outline">
                             <img src={Google_svg} alt="google-auth-svg" width={20} />
                             Sign In with Google
                         </Button>
@@ -86,12 +86,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 </div>
             </form>
             <div className="flex flex-col space-y-2 text-center text-sm">
-                <NavLink to="/forgot-password" className="text-muted-foreground hover:underline">
+                <NavLink to="" className="text-muted-foreground hover:underline">
                     Forgot your password?
                 </NavLink>
                 <span className="text-muted-foreground">
                     Don't have an account?{" "}
-                    <NavLink to="/signup" className="text-primary hover:underline">
+                    <NavLink to="" className="text-primary hover:underline">
                         Sign up
                     </NavLink>
                 </span>

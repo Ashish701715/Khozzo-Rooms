@@ -47,7 +47,7 @@ export default function TwoFactorAuthPage() {
     }
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <Card className="w-[550px] bg-white">
+            <Card className="w-[450px] bg-white rounded-[30px]">
                 <CardHeader className="space-y-1">
                     <CardTitle className="text-2xl font-bold text-center">Two-Factor Authentication</CardTitle>
                     <CardDescription className="text-center">
@@ -75,7 +75,7 @@ export default function TwoFactorAuthPage() {
                         </CardContent>
                         <CardFooter>
                             <Button isLoading={isLoading} type="submit" className="w-full rounded-[5px] bg-blue-600" disabled={isLoading} style={{ color: 'white' }}>
-                                {isLoading ? "Process..." : "Verify"}
+                                {isLoading ? "Process..." : "VERIFY"}
                             </Button>
                         </CardFooter>
                     </form>

@@ -27,7 +27,7 @@ const chartConfig = {
 
 export default function Chart(props: any) {
     return (
-        <ChartContainer config={chartConfig}>
+        <ChartContainer config={chartConfig} className="h-[50%] w-[100%]">
             <BarChart accessibilityLayer data={chartData}>
                 <CartesianGrid vertical={false} />
                 <XAxis
