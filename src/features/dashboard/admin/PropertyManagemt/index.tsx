@@ -1,7 +1,8 @@
 import { Suspense, useEffect, useState } from "react";
-import PropertyListComponents from "./PropertyList";
+import PropertyListComponents from "./PropertyList/PropertyList";
 import { PropertyListApi } from "@/utils/api";
 import { useSelector } from 'react-redux';
+import Layout from "./PropertyList/Layout";
 
 export default function Index() {
     const searchText = useSelector((state: any) => state.search.searchText);
@@ -34,7 +35,7 @@ export default function Index() {
         operationName: "GetPropertyList",
         search: JSON.parse(JSON.stringify({
             name: 'ashish',
-            classs:10
+            classs: 10
         }))
     })
 
@@ -57,9 +58,11 @@ export default function Index() {
     return (
         <>
             <div>
-                <Suspense fallback={<><span>loading...</span></>}>
-                    <PropertyListComponents PropertyList={PropertyList} />
-                </Suspense>
+                <Layout>
+                    <Suspense fallback={<><span>loading...</span></>}>
+                        <PropertyListComponents PropertyList={PropertyList} />
+                    </Suspense>
+                </Layout>
             </div>
         </>
     )

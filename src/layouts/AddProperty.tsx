@@ -1,256 +1,461 @@
-import React, { useEffect, useState } from 'react';
-import { Input, Select, TreeSelect } from 'antd';
-import { fetchCountry } from '@/utils/api';
-import { CircleHelp } from 'lucide-react';
-type Property = {
-    setFormData: any
-    formData: any
-    Errors: any
-    setErrors: any
-}
-const App: React.FC<Property> = (props) => {
+import React, { useState } from "react";
+import { Form, Input, Select, Button, Steps, Tabs, Card, Row, Col } from "antd";
+import { RightOutlined, LeftOutlined } from "@ant-design/icons";
+import MianCss from './../features/dashboard/admin/PropertyManagemt/assets/mainonly.module.css';
+const { Step } = Steps;
+const { Option } = Select;
+const { TabPane } = Tabs;
 
-    const { setFormData, formData, Errors, setErrors } = props;
-    const [CountyList, setCountries] = useState([]);
-    useEffect(() => {
-        const fetchApi = setTimeout(async () => {
-            const country = await fetchCountry();
-            setCountries(country)
-        }, 200);
+const PropertyManager = () => {
+    const [currentTab, setCurrentTab] = useState("1");
 
-        return (() => clearTimeout(fetchApi));
-    }, []);
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData((prevData: any) => ({
-            ...prevData,
-            [name]: value,
-        }));
+    const handleNext = () => {
+        setCurrentTab((prev) => (parseInt(prev) + 1).toString());
     };
-    const handleInputChangeCountry = (value: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setFormData((prevData: any) => ({
-            ...prevData,
-            ['Country']: value,
-        }));
-    }
+
+    const handleBack = () => {
+        setCurrentTab((prev) => (parseInt(prev) - 1).toString());
+    };
+
     return (
-        <>
-            <div className='bg-white border p-1 rounded-[10px] shadow-lg mb-3 p-3'>
-                <div className="section-heading mb-5">
-                    <span className='font-semibold text-[20px]'>Property Infomation: </span>
-                </div>
-                <div className='mb-4'>
-                    <div>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label htmlFor="propertyName" className="input-label">Property Name</label>
-                                <Input value={formData?.propertyName} onChange={handleInputChange} name="propertyName" placeholder="Property Name" />
-                                <span className='text-[12px] text-danger'>{Errors?.propertyName}</span>
+        <div className="main_page_div" style={{}}>
+            {/* Breadcrumb */}
+            <p style={{ marginBottom: 10, fontSize: 14, color: "#666" }}>
+                <a href="#">Home</a> &gt; <a href="#">Properties</a> &gt;{" "}
+                <span style={{ color: "#1890ff" }}>Property Manager</span>
+            </p>
+            {/* Steps Component */}
+            {/* <Steps current={parseInt(currentTab) - 1} style={{ marginBottom: 20 }}>
+        <Step title="Property Details" />
+        <Step title="Address Details" />
+        <Step title="Pricing" />
+        <Step title="Amenities" />
+        <Step title="Documentation" />
+        <Step title="Media" />
+      </Steps> */}
+
+            {/* Tabs Component */}
+            <Tabs activeKey={currentTab} onChange={setCurrentTab} centered>
+                <TabPane className="tabs_btn"  tab={<span><span className="number_tab">1</span>Property Details</span>} key="1">
+                    <Card className="main_card">
+                        <Form layout="vertical">
+                            <Row gutter={16}>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Property Name">
+                                        <Input className="input_color" size="large" placeholder="Enter property name" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Property Type">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="house">House</Option>
+                                            <Option value="apartment">Apartment</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Purpose">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="sale">Sale</Option>
+                                            <Option value="rent">Rent</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Status">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="available">Available</Option>
+                                            <Option value="sold">Sold</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Area">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="1000sqft">1000 sqft</Option>
+                                            <Option value="2000sqft">2000 sqft</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Number of Rooms">
+                                        <Input className="input_color" size="large" type="number" placeholder="Enter number of rooms" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Furnished Status">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="furnished">Furnished</Option>
+                                            <Option value="unfurnished">Unfurnished</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Construction Year">
+                                        <Input className="input_color" size="large" type="number" placeholder="Enter year" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Ownership Type">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="owned">Owned</Option>
+                                            <Option value="rented">Rented</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Property ID">
+                                        <Input className="input_color" size="large" placeholder="Enter property ID" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Landmark">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="near park">Near Park</Option>
+                                            <Option value="city center">City Center</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Coordinates">
+                                        <Input className="input_color" size="large" placeholder="Latitude, Longitude" />
+                                    </Form.Item>
+                                </Col>
+                            </Row>
+
+                            {/* Navigation Buttons */}
+                            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16 }}>
+                                <Button type="default" disabled>
+                                    <LeftOutlined /> Back
+                                </Button>
+                                <Button type="primary" onClick={handleNext}>
+                                    Next Step <RightOutlined />
+                                </Button>
                             </div>
+                        </Form>
+                    </Card>
+                </TabPane>
+                <TabPane className="tabs_btn" tab={<span><span className="number_tab">2</span>Address Details</span>} key="2">
+                    <Card className="main_card">
+                        <Form layout="vertical">
+                            <Row gutter={16}>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Address Line 1">
+                                        <Input className="input_color" size="large" placeholder="Address Line 1" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Address Line 2">
+                                        <Input className="input_color" size="large" placeholder="Address Line 2" />
+                                    </Form.Item>
+                                </Col>
 
-                            <div>
-                                <label htmlFor="propertyType" className="input-label">Property Type</label>
-                                <select value={formData?.propertyType} onChange={handleInputChange} name="propertyType" className="border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 h-[32px] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option selected disabled>Property Type</option>
-                                    <option value="Leased">Leased</option>
-                                    <option value="Revenue_Sharing">Revenue Sharing</option>
-                                </select>
-                                <span className='text-[12px] text-danger'>{Errors?.propertyType}</span>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="City / Town">
+                                        <Input className="input_color" size="large" type="text" placeholder="City / Town" />
+                                    </Form.Item>
+                                </Col>
+
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="State / Province">
+                                        <Input className="input_color" size="large" type="text" placeholder="State / Province" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Zip / Postal Code">
+                                        <Input className="input_color" size="large" placeholder="Zip / Postal Code" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Neighborhood Type">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="near park">Near Park</Option>
+                                            <Option value="city center">City Center</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Accessibility Features">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="near park">Near Park</Option>
+                                            <Option value="city center">City Center</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Nearby Facilities">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="near park">Near Park</Option>
+                                            <Option value="city center">City Center</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                            </Row>
+
+                            {/* Navigation Buttons */}
+                            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16 }}>
+                                <Button type="default" disabled>
+                                    <LeftOutlined /> Back
+                                </Button>
+                                <Button type="primary" onClick={handleNext}>
+                                    Next Step <RightOutlined />
+                                </Button>
                             </div>
+                        </Form>
+                    </Card>
+                </TabPane>
+                <TabPane className="tabs_btn" tab={<span><span className="number_tab">3</span>Pricing</span>} key="3">
+                    <Card className="main_card">
+                        <Form layout="vertical">
+                            <Row gutter={16}>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Fixed Amount">
+                                        <Input className="input_color" size="large" type="text" placeholder="Fixed Amount" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Rent / Lease Amount">
+                                        <Input className="input_color" size="large" type="text" placeholder="Rent / Lease Amount" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Security Deposit">
+                                        <Input className="input_color" size="large" type="text" placeholder="Security Deposit" />
+                                    </Form.Item>
+                                </Col>
+
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Maintenance Charges">
+                                        <Input className="input_color" size="large" type="text" placeholder="Maintenance Charges" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Discount Offers">
+                                        <Input className="input_color" size="large" type="text" placeholder="Discount Offers" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Advance Payment Required">
+                                        <Input className="input_color" size="large" type="text" placeholder="Advance Payment Required" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Pricing Comments">
+                                        <Input className="input_color" size="large" type="text" placeholder="Pricing Comments" />
+                                    </Form.Item>
+                                </Col>
+
+                            </Row>
+
+                            {/* Navigation Buttons */}
+                            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16 }}>
+                                <Button type="default" disabled>
+                                    <LeftOutlined /> Back
+                                </Button>
+                                <Button type="primary" onClick={handleNext}>
+                                    Next Step <RightOutlined />
+                                </Button>
+                            </div>
+                        </Form>
+                    </Card>
+                </TabPane>
+                <TabPane className="tabs_btn" tab={<span><span className="number_tab">4</span>Amenities</span>} key="4">
+                    <Card className="main_card">
+                        <Form layout="vertical">
+                            <Row gutter={16}>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Parking Space">
+                                        <Input className="input_color" size="large" type="number" placeholder="Number of Slots" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Swimming Pool">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="near park">Near Park</Option>
+                                            <Option value="city center">City Center</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Garden / Lawn or Clubhouse">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="near park">Near Park</Option>
+                                            <Option value="city center">City Center</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Power Backup">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="near park">Near Park</Option>
+                                            <Option value="city center">City Center</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Security Features">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="near park">Near Park</Option>
+                                            <Option value="city center">City Center</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Internet Connectivity">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="near park">Near Park</Option>
+                                            <Option value="city center">City Center</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Water Supply Type">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="near park">Near Park</Option>
+                                            <Option value="city center">City Center</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8}>
+                                    <Form.Item className="label_color" label="Fire Safety Compliance">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="near park">Near Park</Option>
+                                            <Option value="city center">City Center</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
 
 
-                            {(formData?.propertyType === "Leased" || formData?.propertyType === "Revenue_Sharing") && (
-                                <>
-                                    <div>
-                                        <label htmlFor="FixedAmount" className="input-label">
-                                            Fixed Amount
-                                        </label>
-                                        <Input
-                                            value={formData?.FixedAmount}
-                                            onChange={handleInputChange}
-                                            name="FixedAmount"
-                                            placeholder="Fixed Amount"
-                                        />
-                                        <span className='text-[12px] text-danger'>{Errors?.FixedAmount}</span>
-                                    </div>
+                            </Row>
 
-                                    {formData?.propertyType === "Revenue_Sharing" && (
-                                        <div>
-                                            <label
-                                                htmlFor="Percentage_Amount"
-                                                className="input-label flex items-center gap-2"
-                                            >
-                                                Percentage Amount
-                                                <span
-                                                    title="Please enter a number between 0 and 100."
-                                                    className="text-blue-600"
-                                                >
-                                                    <CircleHelp strokeWidth={2} width={15} className="cursor-pointer" />
-                                                </span>
+                            {/* Navigation Buttons */}
+                            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16 }}>
+                                <Button type="default" disabled>
+                                    <LeftOutlined /> Back
+                                </Button>
+                                <Button type="primary" onClick={handleNext}>
+                                    Next Step <RightOutlined />
+                                </Button>
+                            </div>
+                        </Form>
+                    </Card>
+                </TabPane>
+                <TabPane className="tabs_btn" tab={<span><span className="number_tab">5</span>Documentation</span>} key="5">
+                    <Card className="main_card">
+                        <Form layout="vertical">
+                            <Row gutter={16}>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Property Registration Number">
+                                        <Input className="input_color" size="large" type="number" placeholder="Property Registration Number" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Ownership Proof">
+                                        <div className="flex items-center border border-gray-300 rounded-lg w-full overflow-hidden">
+                                            <label htmlFor="file-upload" className="bg-blue-600 text-white px-4 py-2 font-semibold cursor-pointer flex items-center">
+                                                Choose File +
                                             </label>
-
-                                            <Input
-                                                type='number'
-                                                value={formData?.Percentage_Amount}
-                                                onChange={(e) => {
-                                                    handleInputChange(e);
-                                                }}
-                                                name="Percentage_Amount"
-                                                placeholder="Percentage Amount (0-100)"
-                                            />
-                                            <span className='text-[12px] text-danger'>{Errors?.Percentage_Amount}</span>
+                                            <input id="file-upload" type="file" className="hidden" />
+                                            <span className="text-gray-400 px-4 py-2 flex-1">Upload images here</span>
                                         </div>
-                                    )}
-                                </>
-                            )}
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Tax Details">
+                                        <Input className="input_color" size="large" type="number" placeholder="Tax Details" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Compliance Certificate">
+                                        <Select variant="borderless" className="input_color" size="large" placeholder="Select">
+                                            <Option value="near park">Near Park</Option>
+                                            <Option value="city center">City Center</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Previous Sale Record">
+                                        <div className="flex items-center border border-gray-300 rounded-lg w-full overflow-hidden">
+                                            <label htmlFor="file-upload" className="bg-blue-600 text-white px-4 py-2 font-semibold cursor-pointer flex items-center">
+                                                Choose File +
+                                            </label>
+                                            <input id="file-upload" type="file" className="hidden" />
+                                            <span className="text-gray-400 px-4 py-2 flex-1">Upload images here</span>
+                                        </div>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                    <Form.Item className="label_color" label="Lease Agreement upload">
+                                        <div className="flex items-center border border-gray-300 rounded-lg w-full overflow-hidden">
+                                            <label htmlFor="file-upload" className="bg-blue-600 text-white px-4 py-2 font-semibold cursor-pointer flex items-center">
+                                                Choose File +
+                                            </label>
+                                            <input id="file-upload" type="file" className="hidden" />
+                                            <span className="text-gray-400 px-4 py-2 flex-1">Upload images here</span>
+                                        </div>
+                                    </Form.Item>
+                                </Col>
 
-                            <div>
-                                <label htmlFor="numberOfRooms" className="input-label">Number of Rooms</label>
-                                <Input value={formData?.numberOfRooms} onChange={handleInputChange} name="numberOfRooms" placeholder="Number of Rooms" />
-                                <span className='text-[12px] text-danger'>{Errors?.numberOfRooms}</span>
+                            </Row>
+
+                            {/* Navigation Buttons */}
+                            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16 }}>
+                                <Button type="default" disabled>
+                                    <LeftOutlined /> Back
+                                </Button>
+                                <Button type="primary" onClick={handleNext}>
+                                    Next Step <RightOutlined />
+                                </Button>
                             </div>
+                        </Form>
+                    </Card>
+                </TabPane>
+                <TabPane className="tabs_btn" tab={<span><span className="number_tab">6</span>Media</span>} key="6">
+                    <Card className="main_card">
+                        <Form layout="vertical">
+                            <Row gutter={16}>
+                                <Col span={12}>
+                                <Form.Item className="label_color" label="Property Images">
+                                <div className="flex items-center border border-gray-300 rounded-lg w-full overflow-hidden">
+                                        <label htmlFor="file-upload" className="bg-blue-600 text-white px-4 py-2 font-semibold cursor-pointer flex items-center">
+                                            Choose File +
+                                        </label>
+                                        <input id="file-upload" type="file" className="hidden" />
+                                        <span className="text-gray-400 px-4 py-2 flex-1">Upload images here</span>
+                                    </div>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                <Form.Item className="label_color" label="Video Tour">
+                                    <div className="flex items-center border border-gray-300 rounded-lg w-full overflow-hidden">
+                                        <label htmlFor="file-upload" className="bg-blue-600 text-white px-4 py-2 font-semibold cursor-pointer flex items-center">
+                                            Choose File +
+                                        </label>
+                                        <input id="file-upload" type="file" className="hidden" />
+                                        <span className="text-gray-400 px-4 py-2 flex-1">Upload images here</span>
+                                    </div>
+                                </Form.Item>
+                                </Col>
 
-                            <div>
-                                <label htmlFor="carpetArea" className="input-label">Carpet Area (optional)</label>
-                                <Input value={formData?.carpetArea} onChange={handleInputChange} name="carpetArea" placeholder="Carpet Area" />
+                            </Row>
+
+                            {/* Navigation Buttons */}
+                            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16 }}>
+                                <Button type="default" disabled>
+                                    <LeftOutlined /> Back
+                                </Button>
+                                <Button type="primary" onClick={handleNext}>
+                                Submit <RightOutlined />
+                                </Button>
                             </div>
-
-                            {/* Address Details Section */}
-                            <div>
-                                <label htmlFor="addressLine1" className="input-label">Address Line 1</label>
-                                <Input value={formData?.addressLine1} onChange={handleInputChange} name="addressLine1" placeholder="Address Line 1" />
-                                <span className='text-[12px] text-danger'>{Errors?.addressLine1}</span>
-                            </div>
-
-                            <div>
-                                <label htmlFor="addressLine2" className="input-label">Address Line 2 (optional)</label>
-                                <Input value={formData?.addressLine2} onChange={handleInputChange} name="addressLine2" placeholder="Address Line 2" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="city" className="input-label">City</label>
-                                <Input value={formData?.city} onChange={handleInputChange} name="city" placeholder="City" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="stateProvince" className="input-label">State/Province</label>
-                                <Input value={formData?.stateProvince} onChange={handleInputChange} name="stateProvince" placeholder="State/Province" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="zipPostalCode" className="input-label">Zip/Postal Code</label>
-                                <Input value={formData?.zipPostalCode} onChange={handleInputChange} name="zipPostalCode" placeholder="Zip/Postal Code" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="country" className="input-label">Country</label>
-                                <TreeSelect
-                                    value={formData?.Country} onChange={handleInputChangeCountry}
-                                    showSearch
-                                    style={{ width: '100%' }}
-                                    dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                                    placeholder="select Country"
-                                    allowClear
-                                    treeDefaultExpandAll
-                                    treeData={
-                                        CountyList.map((data: any) => ({
-                                            value: data.name?.common,
-                                            title: data.name?.common,
-                                        }))
-                                    }
-                                />
-                            </div>
-                        </div>
+                        </Form>
+                    </Card>
+                </TabPane>
 
 
-                    </div>
-                </div>
-            </div>
-
-            {/* Property Infomation section end  */}
-
-            {/* Property Owner Infomation section start  */}
-            <div className='bg-white border p-1 rounded-[10px] shadow-lg mb-3 p-3'>
-                <div className="section-heading mb-5">
-                    <span className='font-semibold text-[20px]'>Owner Infomation: </span>
-                </div>
-                <div className='mb-4'>
-                    <div>
-                        <div className="grid grid-cols-2 gap-4">
-                            {/* Property Owner Information Section */}
-                            <div>
-                                <label htmlFor="ownerName" className="input-label">Owner Name</label>
-                                <Input value={formData?.ownerName} onChange={handleInputChange} name="ownerName" placeholder="Owner Name" />
-                                <span className='text-[12px] text-danger'>{Errors?.ownerName}</span>
-                            </div>
-
-                            <div>
-                                <label htmlFor="ownerContact" className="input-label">Contact Number</label>
-                                <Input value={formData?.ownerContact} onChange={handleInputChange} name="ownerContact" placeholder="Owner Contact Number" />
-                                <span className='text-[12px] text-danger'>{Errors?.ownerContact}</span>
-                            </div>
-
-                            <div>
-                                <label htmlFor="ownerContact" className="input-label">Contact Email</label>
-                                <Input value={formData?.ownerEmail} onChange={handleInputChange} name="ownerEmail" placeholder="Owner Contact Email" />
-                                <span className='text-[12px] text-danger'>{Errors?.ownerEmail}</span>
-                            </div>
-
-                            <div>
-                                <label htmlFor="ownerAddress1" className="input-label">Address Line 1</label>
-                                <Input value={formData?.ownerAddress1} onChange={handleInputChange} name="ownerAddress1" placeholder="Owner Address Line 1" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="ownerAddress2" className="input-label">Address Line 2 (optional)</label>
-                                <Input value={formData?.ownerAddress2} onChange={handleInputChange} name="ownerAddress2" placeholder="Owner Address Line 2" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="ownerCity" className="input-label">City</label>
-                                <Input value={formData?.ownerCity} onChange={handleInputChange} name="ownerCity" placeholder="Owner City" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="ownerStateProvince" className="input-label">State/Province</label>
-                                <Input value={formData?.ownerStateProvince} onChange={handleInputChange} name="ownerStateProvince" placeholder="State/Province" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="ownerZipPostalCode" className="input-label">Zip/Postal Code</label>
-                                <Input value={formData?.ownerZipPostalCode} onChange={handleInputChange} name="ownerZipPostalCode" placeholder="Zip/Postal Code" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="ownerCountry" className="input-label">Country</label>
-                                <Input value={formData?.ownerCountry} onChange={handleInputChange} name="ownerCountry" placeholder="Owner Country" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="ownerAccountNo" className="input-label">Account Number</label>
-                                <Input value={formData?.ownerAccountNo} onChange={handleInputChange} name="ownerAccountNo" placeholder="Owner Account Number" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="ownerIFSCCode" className="input-label">IFSC Code</label>
-                                <Input value={formData?.ownerIFSCCode} onChange={handleInputChange} name="ownerIFSCCode" placeholder="Owner IFSC Code" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="ownerBankName" className="input-label">Bank Name</label>
-                                <Input value={formData?.ownerBankName} onChange={handleInputChange} name="ownerBankName" placeholder="Owner Bank Name" />
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-            </div>
-            {/* Property Owner Infomation section end  */}
-        </>
+            </Tabs>
+        </div>
     );
 };
 
-export default App;
+export default PropertyManager;

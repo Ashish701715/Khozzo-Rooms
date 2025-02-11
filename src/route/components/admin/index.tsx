@@ -4,13 +4,14 @@ const Home = lazy(() => import('../../../features/dashboard/admin/dashboard/inde
 const AuthPage = lazy(() => import('../../../features/Auth/layout'));
 const Table = lazy(() => import('../../../layouts/Table'));
 const TwoFactor = lazy(() => import('../../../features/Auth/Two_factor'));
-const PropertyManagment = lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/index'));
+const PropertyManagment = lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/PropertyList/Layout'));
 
 const PageNotFound = lazy(() => import('../../../ErrorPage/404'));
 
 
 //Property Routes
 const AddProperty = React.lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/addProperty'));
+const Addroom = React.lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/Appointment/Layout'));
 
 const adminRoute = [
     {
@@ -20,9 +21,17 @@ const adminRoute = [
         className: '',
         is_Child: false,
     },
+
     {
         path: '/property/add',
         component: AddProperty,
+        layout: '',
+        className: '',
+        is_Child: false,
+    },
+    {
+        path: 'property/appointment',
+        component: Addroom,
         layout: '',
         className: '',
         is_Child: false,

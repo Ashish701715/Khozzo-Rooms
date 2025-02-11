@@ -4,7 +4,8 @@ import AddProperty from '../../../../layouts/AddProperty';
 import { useEffect, useState } from 'react';
 import { addNewProperty } from '@/utils/api';
 import { message } from 'antd';
-import Swal from 'sweetalert2';
+import './assets/style.css';
+
 export default function AddPropertyComponents() {
     const [formData, setFormData] = useState<{ [key: string]: any }>({});
     const [isLoading, setIsLoading] = useState(false);
@@ -34,12 +35,12 @@ export default function AddPropertyComponents() {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <div className='border-b border-dashed mb-5 p-2 flex justify-end gap-3 '>
+                {/* <div className='border-b border-dashed mb-5 p-2 flex justify-end gap-3 '>
                     <Button color='danger' size='sm' className='rounded-sm'>Cancel</Button>
                     <Button type='submit' isLoading={isLoading} color='primary' size='sm' className='rounded-sm'>Save</Button>
-                </div>
+                </div> */}
                 <div className="addProperty">
-                    <AddProperty setFormData={setFormData} formData={formData} Errors={errors} setErrors={setErrors}/>
+                    <AddProperty />
                 </div>
             </form>
         </>

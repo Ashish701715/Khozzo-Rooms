@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Shanti&family=Sora:wght@100..800&display=swap');
+.main-color{
+  color: #0c78c4;
+}
+.selected-row {
+    background-color: #f0f8ff !important;
+  }
+  .icon_list_grid {
+    display: flex;
+}
+  .icon_list {
+    color: #CFC9C9;
+}
+.icon_grid {
+    color: #CFC9C9;
+    padding: 0 2px;
+}
+.icon_list.acvite {
+    color: #0087E5;
+}
+.table_header {
+  padding: 13px 16px;
+  background: #ffffff;
+  color: #7B7B7B;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+.table_body{
+  background-color: #ffffff;
+}
+tbody {
+  border-radius: 20px!important;
+  box-shadow: 1px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff40;
+}
+
+.--active.table-ui {
+  border-radius: 13px;
+  background: #ffffff40;
+  box-shadow: 0px 4px 22px 0px rgba(7, 29, 63, 0.11);
+}
+.edit_icon
+{
+  color:#31AA21;
+  width: 20px;
+  height:20px;
+}
+.check_icon
+{
+  color:#31AA21;
+}
+.bg-primary {
+  background-color: #0c78c4;
+}
+.box_property{
+  border-radius: 7px;
+  background: #FFF;
+  box-shadow: 0px 4px 23px 0px #B2CFE2;
+  margin: 8px 30px 8px 0;
+    padding: 1px 7px 16px;
+}
+.iconlist {
+  border-radius: 22.909px;
+  background: #F2FFF3;
+  padding: 0 8px;
+}
+.content_pro p{
+color: #404040;
+ font-size: 15px;
+ font-family: Poppins;
+ font-weight: 400;
+ word-wrap: break-word
+}
+.content_pro b{
+  color: #404040;
+   font-size: 15px;
+   font-family: Poppins;
+   font-weight: 500;
+   word-wrap: break-word
+}

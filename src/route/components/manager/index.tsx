@@ -1,15 +1,22 @@
 import { lazy } from "react";
-
 const Home = lazy(() => import('../../../App'));
 const AuthPage = lazy(() => import('../../../features/Auth/layout'));
 const Table = lazy(() => import('../../../layouts/Table'));
 const TwoFactor = lazy(() => import('../../../features/Auth/Two_factor'));
+const Appointment = lazy(()=> import ('../../../features/Appointment/appointment'))
 
 class RouteMapping {
     routes = [
         {
             path: '/dashboard/admin',
             component: Home,
+            layout: '',
+            className: '',
+            is_Child: false,
+        },
+        {
+            path: '/appointment',
+            component: Appointment,
             layout: '',
             className: '',
             is_Child: false,
