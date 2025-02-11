@@ -1,17 +1,17 @@
 import React, { lazy } from "react";
 
-const Home = lazy(() => import('../../../features/dashboard/admin/dashboard/index'));
-const AuthPage = lazy(() => import('../../../features/Auth/layout'));
+const Home = lazy(() => import('../../../pages/manager/dashboard/admin/dashboard/index'));
+const AuthPage = lazy(() => import('../../../pages/Auth/layout'));
 const Table = lazy(() => import('../../../layouts/Table'));
-const TwoFactor = lazy(() => import('../../../features/Auth/Two_factor'));
-const PropertyManagment = lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/PropertyList/Layout'));
+const TwoFactor = lazy(() => import('../../../pages/Auth/Two_factor'));
+const PropertyManagment = lazy(() => import('../../../pages/manager/dashboard/admin/PropertyManagemt/PropertyList/Layout'));
 
 const PageNotFound = lazy(() => import('../../../ErrorPage/404'));
 
 
 //Property Routes
-const AddProperty = React.lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/addProperty'));
-const Addroom = React.lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/Appointment/Layout'));
+const AddProperty = React.lazy(() => import('../../../pages/manager/dashboard/admin/PropertyManagemt/addProperty'));
+const Addroom = React.lazy(() => import('../../../pages/manager/dashboard/admin/PropertyManagemt/Appointment/Layout'));
 
 const adminRoute = [
     {

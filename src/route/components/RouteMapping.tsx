@@ -1,9 +1,10 @@
 import { lazy, Suspense } from "react";
 import { adminRoute } from "./admin";
+import { ManagerRoute } from "./manager/index"
 
 class RouteMapping {
     routes = [
-        ...adminRoute
+        ...adminRoute , ...ManagerRoute
     ];
 
     renderComponent(Component: any) {

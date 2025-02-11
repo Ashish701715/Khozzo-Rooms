@@ -1,12 +1,12 @@
 import { lazy } from "react";
 const Home = lazy(() => import('../../../App'));
-const AuthPage = lazy(() => import('../../../features/Auth/layout'));
+const AuthPage = lazy(() => import('../../../pages/Auth/layout'));
 const Table = lazy(() => import('../../../layouts/Table'));
-const TwoFactor = lazy(() => import('../../../features/Auth/Two_factor'));
-const Appointment = lazy(()=> import ('../../../features/Appointment/appointment'))
+const TwoFactor = lazy(() => import('../../../pages/Auth/Two_factor'));
+const Appointment = lazy(()=> import ('../../../pages/manager/Appointment/appointment'))
 
-class RouteMapping {
-    routes = [
+const ManagerRoute = [
+ 
         {
             path: '/dashboard/admin',
             component: Home,
@@ -42,8 +42,8 @@ class RouteMapping {
             className: '',
             is_Child: false,
         }
-    ];
+    
 
-}
+    ]
 
-export default RouteMapping;
+export  {ManagerRoute};

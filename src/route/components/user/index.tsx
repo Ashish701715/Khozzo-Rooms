@@ -1,9 +1,9 @@
 import { lazy } from "react";
 
 const Home = lazy(() => import('../../../App'));
-const AuthPage = lazy(() => import('../../../features/Auth/layout'));
+const AuthPage = lazy(() => import('../../../pages/Auth/layout'));
 const Table = lazy(() => import('../../../layouts/Table'));
-const TwoFactor = lazy(() => import('../../../features/Auth/Two_factor'));
+const TwoFactor = lazy(() => import('../../../pages/Auth/Two_factor'));
 
 class RouteMapping {
     routes = [

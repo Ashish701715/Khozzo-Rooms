@@ -1,6 +1,6 @@
 
 import { Button, Input, Pagination, Chip } from '@nextui-org/react';
-import AddProperty from '../../../../layouts/AddProperty';
+import AddProperty from '../../../../../layouts/AddProperty';
 import { useEffect, useState } from 'react';
 import { addNewProperty } from '@/utils/api';
 import { message } from 'antd';

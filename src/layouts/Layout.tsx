@@ -10,7 +10,7 @@ import { Link, useLocation } from 'react-router'
 import { Home, ChevronUp } from "lucide-react";
 import { AudioOutlined, BellFilled } from '@ant-design/icons';
 import { Input as antInput, Space, Button as antButton, Badge } from 'antd';
-import LoginPage from '@/features/Auth/layout'
+import LoginPage from '@/pages/Auth/layout'
 
 
 const { Search } = antInput;
