@@ -14,9 +14,9 @@ class RouteMapping {
             is_Child: false,
         },
         {
-            path: '/auth/two-factor/:client_id',
+            path: '/auth/two-factor',
             component: TwoFactor,
-            layout: 'Blank',
+            layout: '',
             className: '',
             is_Child: false,
         }

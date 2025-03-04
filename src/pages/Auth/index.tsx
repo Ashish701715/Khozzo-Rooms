@@ -1,13 +1,14 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/component/ui/button"
+import { Input } from "@/component/ui/input"
+import { Label } from "@/component/ui/label"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/component/ui/tabs"
 import { NavLink, useNavigate } from "react-router"
 import Google_svg from '/svg/google.svg';
 import { Danger } from '../../common/Alert';
 import { apiCalling, googleLogin } from "@/utils/api"
+import axios from "axios"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 
@@ -15,19 +16,24 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     const [isLoading, setIsLoading] = React.useState<boolean>(false)
     const route = useNavigate();
     const [Error, setError] = React.useState([]);
+    const [formData , setFormData] = React.useState({
+        email:"",
+        password:""
+    })
     async function onSubmit(event: any) {
         event.preventDefault()
 
         try {
             setIsLoading(true)
-            const body = new FormData(event.target);
-            const response = await apiCalling('?route=/admin/auth/login', body);
-            if (response?.error) {
+       
+            const {data} = await axios.post('http://localhost:3000/v1/user/login', formData);
+            if (data.success === 0) {
                 setIsLoading(false)
-                setError(response?.error)
+                
             } else {
                 setIsLoading(false)
-                route(`/auth/two-factor?client_secret=${encodeURIComponent(response?.data?.client_id)}`)
+                route(`/auth/two-factor?client_secret=${encodeURIComponent(data?.user?.id)}&email=${encodeURIComponent(data?.user?.email)}`);
+
             }
         } catch (error) {
             console.error(error)
@@ -51,6 +57,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                             id="email"
                             placeholder="name@example.com"
                             type="email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             name="username"
                             autoCapitalize="none"
                             autoComplete="email"
@@ -63,6 +71,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                         <Input
                             name="password"
                             id="password"
+                            value={formData.password}
+                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                             placeholder="Enter your password"
                             type="password"
                             autoCapitalize="none"

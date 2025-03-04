@@ -1,15 +1,16 @@
 import { lazy, Suspense } from "react";
+import { ManagerRoutes } from "./manager";
 import { adminRoute } from "./admin";
-import { ManagerRoute } from "./manager/index"
+
 
 class RouteMapping {
     routes = [
-        ...adminRoute , ...ManagerRoute
+        ...ManagerRoutes , ...adminRoute
     ];
 
     renderComponent(Component: any) {
         return (
-            <Suspense fallback={<div>laoding page...</div>}>
+            <Suspense fallback={<div>loading page...</div>}>
                 <Component />
             </Suspense>
         );

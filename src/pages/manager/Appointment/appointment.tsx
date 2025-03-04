@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/component/ui/button"
 import { ChevronLeft, ChevronRight, Filter } from 'lucide-react'
 import FilterPopover from "./filter"
 
@@ -19,13 +19,12 @@ const CustomPopover = ({ event, position, onClose }: { event: { date: number; la
 
     return (
         <div
-            className="absolute bg-white shadow-lg border border-gray-200 rounded-md p-4 w-[300px] sm:w-[380px] max-w-full min-h-auto z-50 transition-all duration-300 ease-in-out"
+            className="absolute bg-white shadow-lg border border-gray-200 rounded-md p-4 w-[346px] sm:w-[346px] max-w-full min-h-auto z-50 transition-all duration-300 ease-in-out"
             style={{
                 top: `calc(${position.top} + 10px)`,
-                left: `min(${position.left}, calc(100vw - 320px))`,
+                left: `min(${position.left}, calc(100vw - 500px))`,
             }}
         >
-
             <div className="flex justify-between items-center border-b pb-2">
                 <h3 className="text-md font-semibold">Additional Information</h3>
                 <button onClick={onClose} className="text-gray-600 hover:text-gray-900">
@@ -56,37 +55,40 @@ export default function Component() {
 
     return (
         <>
-            {/* Dashboard Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-3">
-                <div className="dashbord_box">
+                <div className="dashbord_box transition-all ease-in-out duration-300 hover:shadow-lg hover:scale-105 hover:bg-[#0D8EE6] hover:text-white p-4 rounded-lg cursor-pointer">
                     <div>
-                        <h2 className="font-total-text text-[#0D8EE6]">Completed Appointments</h2>
+                        <h2 className="font-total-text">Completed Appointments</h2>
                         <p className="headertext mt-2">15000</p>
                     </div>
                     <img src="/svg/Group Tick.svg" alt="" />
                 </div>
-                <div className="dashbord_box">
+
+                <div className="dashbord_box transition-all ease-in-out duration-300 hover:shadow-lg hover:scale-105 hover:bg-[#09B69F] hover:text-white p-4 rounded-lg cursor-pointer">
                     <div>
-                        <h2 className="font-total-text text-[#09B69F]">Cancelled Appointments</h2>
+                        <h2 className="font-total-text">Cancelled Appointments</h2>
                         <p className="headertext mt-2">15000</p>
                     </div>
                     <img src="/svg/time 1.svg" alt="" />
                 </div>
-                <div className="dashbord_box ">
+
+                <div className="dashbord_box transition-all ease-in-out duration-300 hover:shadow-lg hover:scale-105 hover:bg-[#FF900D] hover:text-white p-4 rounded-lg cursor-pointer">
                     <div>
-                        <h2 className="font-total-text text-[#FF900D]">Rescheduled Appointments</h2>
+                        <h2 className="font-total-text">Rescheduled Appointments</h2>
                         <p className="headertext mt-2">15000</p>
                     </div>
                     <img src="/svg/rescheduling 1.svg" alt="" />
                 </div>
-                <div className="dashbord_box">
+
+                <div className="dashbord_box transition-all ease-in-out duration-300 hover:shadow-lg hover:scale-105 hover:bg-[#9723FD] hover:text-white p-4 rounded-lg cursor-pointer">
                     <div>
-                        <h2 className="font-total-text text-[#9723FD]">Total Appointments</h2>
+                        <h2 className="font-total-text">Total Appointments</h2>
                         <p className="headertext mt-2">15000</p>
                     </div>
                     <img src="/svg/calendar (2) 1.svg" alt="" />
                 </div>
             </div>
+
 
             {/* Calendar Container */}
             <div className="w-full bg-white rounded-xl p-4 shadow-sm">
@@ -133,8 +135,8 @@ export default function Component() {
                     </div>
                 </div>
                 <div
-                    className="inline-flex items-center bg-[#d8e0f0] text-gray-800 font-medium px-3 h-[28px] w-[90px] rounded-[30px] shadow-sm"
-            
+                    className="inline-flex items-center bg-[#d8e0f0] text-gray-800 font-medium px-3 h-[28px] w-[90px] rounded-[30px] shadow-sm mb-3"
+
                 >
                     <span className="mr-2 text-sm">Name</span>
                     <button
@@ -146,7 +148,7 @@ export default function Component() {
                 </div>
                 <div
                     className="inline-flex items-center bg-[#d8e0f0] text-gray-800 font-medium px-3 h-[28px] w-[90px] rounded-[30px] shadow-sm ml-2"
-            
+
                 >
                     <span className="mr-2 text-sm">Name</span>
                     <button
@@ -177,7 +179,7 @@ export default function Component() {
                                 <div
                                     key={index}
                                     className={`min-h-[100px] sm:min-h-[120px] p-2 border-b border-r relative ${isCurrentMonth ? "bg-white" : "bg-gray-50"
-                                        }`}
+                                        } last:border-b-0 hover:shadow-xl hover:scale-200 hover:border  hover:text-black transition-all duration-300 ease-in-out`}
                                 >
                                     <span className={`text-sm ${isCurrentMonth ? "text-gray-900" : "text-gray-400"}`}>
                                         {dayNumber <= 0 ? 30 + dayNumber : dayNumber > 31 ? dayNumber - 31 : dayNumber}

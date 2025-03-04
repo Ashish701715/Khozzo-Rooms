@@ -1,20 +1,23 @@
 import React, { useState } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/component/ui/card"
 import { twoFactorAuthenticate } from "@/utils/api"
 import { Button, InputOtp } from "@nextui-org/react"
 import { useLocation, useNavigate, useParams } from "react-router"
 import { setLocalStorage } from "@/common/localStore"
+import axios from "axios"
 export default function TwoFactorAuthPage() {
 
     const [ErrorMessage, setErrorMessage] = useState<string>('');
     const location = useLocation();
 
     const queryParams = new URLSearchParams(location.search);
-    const clientSecret = queryParams.get('client_secret');
+
+    const clientSecret = queryParams.get('client_secret'); 
+const email = queryParams.get('email'); 
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [formData, setFormData] = React.useState<{ otp: string, client_id: string }>({
+    const [formData, setFormData] = React.useState<{ otp: string, email: string }>({
         otp: '',
-        client_id: clientSecret || '',
+        email: email || '',
     });
 
     const route = useNavigate();
@@ -28,23 +31,32 @@ export default function TwoFactorAuthPage() {
     const handleForm_submission = async (e: any) => {
         e.preventDefault();
         setIsLoading(true);
-        setErrorMessage('')
+        setErrorMessage('');
+    
         try {
-            const response = await twoFactorAuthenticate(formData);
-            if (response?.status === false) {
-                setErrorMessage(response?.message)
-            } else {
-                setLocalStorage('jwt', response?.jwt);
-                setLocalStorage('clientName', response?.infomation?.ClientName);
-                setLocalStorage('clientEmail', response?.infomation?.Email);
-                setLocalStorage('sessionId', response?.infomation?.sessionID);
-                route('/dashboard/admin')
+            const { data } = await axios.post('http://localhost:3000/v1/user/verify', formData);
+    
+            if (!data.success) { // Assuming success is `1` for success and `0` for failure
+                setErrorMessage("Verification failed. Please try again.");
+                setIsLoading(false);
+                return;
             }
+    
+            // Store values safely in local storage
+            setLocalStorage('jwt', data?.token);
+ 
+    
+            // Redirect to the admin dashboard
+            route('/dashboard/admin');
+    
+        } catch (error: any) {
+            console.error("Error:", error?.message);
+            setErrorMessage("Something went wrong. Please try again.");
+        } finally {
             setIsLoading(false);
-        } catch (Error: any) {
-            console.error(Error?.message)
         }
-    }
+    };
+    
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <Card className="w-[450px] bg-white rounded-[30px]">

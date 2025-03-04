@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 import { UserAuthForm } from "./index";
 import { NavLink } from "react-router";
 

@@ -1,24 +1,434 @@
-@layer base {
-    :root {
-      --sidebar-background: 0 0% 98%;
-      --sidebar-foreground: 240 5.3% 26.1%;
-      --sidebar-primary: 240 5.9% 10%;
-      --sidebar-primary-foreground: 0 0% 98%;
-      --sidebar-accent: 240 4.8% 95.9%;
-      --sidebar-accent-foreground: 240 5.9% 10%;
-      --sidebar-border: 220 13% 91%;
-      --sidebar-ring: 217.2 91.2% 59.8%;
+  :root {
+    --blue-color: #071D3F;
+    --yellow-color: #E2AD17;
+    --lightgray-color: #EEE;
+    --skyblue-color: #87CEEB;
+    --font-family: "Poppins";
+    --bodybackground-color: #FFF;
+}
+
+* {
+    font-family: Poppins !important;
+
+}
+
+header {
+    border-bottom: 1px solid #DADADA;
+}
+
+.main-content {
+    background-color: var(--bodybackground-color);
+}
+
+/* Sidebar css */
+
+.sidebar .nav-item>button.active>div>svg>path,
+.sidebar .nav-item>button.active>div>svg>g>path,
+.sidebar .nav-item>a.active>div>svg>path,
+.sidebar .nav-item>a.active>div>svg>g>path,
+.sidebar .nav-item>a.active>div>svg>g>circle {
+    fill: #fff;
+}
+
+.sidebar .nav-item>button:hover>div>svg>path,
+.sidebar .nav-item>button:hover>div>svg>g>path,
+.sidebar .nav-item>a:hover>div>svg>path,
+.sidebar .nav-item>a:hover>div>svg>g>path,
+.sidebar .nav-item>a:hover>div>svg>g>circle {
+    fill: #fff !important;
+}
+
+.sidebar .nav-item>button>div>span,
+.sidebar .nav-item>a>div>span {
+    color: #A1AEC0;
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.sidebar ul.sub-menu li button,
+.sidebar ul.sub-menu li a {
+    color: #A1AEC0;
+    font-family: var(--font-family) !important;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+:is([dir="ltr"] .sidebar ul.sub-menu li button)::before,
+:is([dir="ltr"] .sidebar ul.sub-menu li a)::before {
+    border-bottom: 2.009px solid #A1AEC0;
+    width: 20px;
+}
+
+.sidebar ul.sub-menu {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.sidebar ul.sub-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 22px;
+    width: 2px;
+    height: 87%;
+    background-color: #A1AEC0;
+}
+
+
+.sidebar ul.sub-menu li button::before,
+.sidebar ul.sub-menu li a::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+}
+
+
+
+.sidebar ul.sub-menu li a::before,
+.sidebar ul.sub-menu li a:hover::before {
+
+    background-color: #dbdbdb00 !important;
+}
+
+/* page title */
+
+.CRM-Page-Title {
+    color: var(--Black, #373A40);
+    font-family: var(--font-family) !important;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.CRM-Page-Sturcture {
+    font-family: Poppins;
+    Color: #ADACAC;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.01em;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.bg-yellow {
+    background-color: var(--yellow-color);
+}
+
+.CRM-Page-Name {
+    Color: #E2AD17;
+}
+
+.Filter-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 1px;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0.01em;
+    text-align: center;
+    border-radius: 42px;
+    text-underline-position: from-font;
+    background-color: var(--lightgray-color);
+    color: #373A40;
+}
+
+.Insert-Button {
+    font-size: 14px;
+    border-radius: 42px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0.01em;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    background-color: var(--blue-color);
+    color: #FFF;
+}
+
+
+.Drawer-header {
+    font-family: Poppins;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 33px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+table thead tr th {
+    background-color: #F5F5F5 !important;
+}
+
+table tbody tr td ::before {
+    background-color: #ffff !important;
+}
+
+input[type="checkbox"]:enabled:checked {
+    background-color: #002B4E !important;
+    color: white;
+}
+
+.blue-color {
+    background-color: var(--blue-color);
+    color: #FFF;
+}
+
+.lightgray-color {
+    background-color: var(--lightgray-color);
+    color: #373A40;
+}
+
+.yellow-color {
+    background-color: var(--yellow-color);
+    color: #FFF;
+}
+
+.skyblue-color {
+    background-color: var(--skyblue-color);
+    color: #FFF;
+}
+
+.text-yellow {
+    color: var(--yellow-color);
+}
+
+.reset-btn,
+.Close-btn {
+    width: 84px;
+    height: 41px;
+    top: 689px;
+    left: 899px;
+    gap: 0px;
+    border-radius: 10px;
+    border: 1px solid var(--blue-color);
+    opacity: 0px;
+}
+
+.Search-btn,
+.submit-btn {
+    width: 104px;
+    height: 41px;
+    top: 689px;
+    left: 993px;
+    gap: 0px;
+    border-radius: 10px;
+    opacity: 0px;
+    background-color: var(--yellow-color);
+    color: #FFF;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    border: none;
+    outline: 1px solid #e2ad17;
+    box-shadow: 0px 1px 5px 1px #e2ad1773;
+}
+
+
+input,
+select,
+textarea {
+    padding: 16px;
+}
+
+.Bs-company-f input {
+    padding: 9px;
+}
+
+.Bs-company-f .react-tel-input .form-control {
+    border: 1px solid #d1d5db;
+}
+
+.Bs-company-f .react-tel-input .form-control:focus-visible {
+    border: none;
+    outline: 1px solid #e2ad17;
+    box-shadow: 0px 1px 5px 1px #e2ad1773;
+
+}
+
+.Bs-company-f .react-tel-input .flag-dropdown {
+    background-color: #fff;
+    border: 1px solid #d1d5db;
+}
+
+.Bs-company-f .react-tel-input .flag-dropdown:focus-visible {
+    border: none;
+    outline: 1px solid #e2ad17;
+    box-shadow: 0px 1px 5px 1px #e2ad1773;
+}
+
+.Form-lable {
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin-bottom: 0px !important
+}
+
+label {
+    margin-bottom: 0.375rem !important;
+    font-weight: 400
+}
+
+input::placeholder {
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+
+
+.sidebar .nav-item>button.active>div>span,
+.sidebar .nav-item>a.active>div>span {
+    color: #FFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.sidebar .nav-item>button.active,
+.sidebar .nav-item>a.active {
+    background-color: #E2AD17;
+    border-radius: 25px;
+
+}
+
+.sidebar ul.sub-menu li a.active {
+    border-radius: 25px;
+    background-color: #1A2C48;
+    color: white;
+}
+
+.sidebar ul.sub-menu li button:hover,
+.sidebar ul.sub-menu li a:hover {
+    border-radius: 25px;
+    background-color: #1A2C48;
+    color: rgb(249 249 249);
+}
+
+@keyframes disintegrate {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
     }
-  
-    .dark {
-      --sidebar-background: 240 5.9% 10%;
-      --sidebar-foreground: 240 4.8% 95.9%;
-      --sidebar-primary: 0 0% 98%;
-      --sidebar-primary-foreground: 240 5.9% 10%;
-      --sidebar-accent: 240 3.7% 15.9%;
-      --sidebar-accent-foreground: 240 4.8% 95.9%;
-      --sidebar-border: 240 3.7% 15.9%;
-      --sidebar-ring: 217.2 91.2% 59.8%;
+
+    100% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
     }
-  }
+}
+
+.section.disintegrate {
+    animation: disintegrate 0.5s ease forwards;
+}
+
+#DragContnet {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.section {
+    transition: transform 0.3s ease-in-out;
+    /* Smooth animation during drag */
+}
+
+.dragging {
+    opacity: 0.5;
+    /* Make the dragged item semi-transparent */
+}
+
+.drag-over {
+    border: 2px dashed #ccc;
+    /* Show a dashed border when an item is hovered */
+}
+
+.total_number {
+    color: var(--Black);
+    font-family: Sora;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.total_number>span {
+    color: var(--yellow-color);
+}
+
+.Dashboardtop-icon {
+    background: rgb(51 53 0 / 8%);
+    transition: var(--transition);
+    color: var(--main-color);
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    font-size: 40px;
+    height: 70px;
+    width: 70px;
+}
+
+.Dashboardtop-icon>.icon {
+    left: 0;
+    right: 0;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+    position: absolute;
+    transform: translateY(-50%);
+}
+
+
+
+.detail-modal .ant-modal-content {
+    padding: 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.detail-modal .ant-modal-body {
+    padding: 0;
+}
+
+.detail-modal .ant-btn-primary {
+    background-color: rgb(79, 70, 229);
+}
+
+.detail-modal .ant-btn-primary:hover {
+    background-color: rgb(67, 56, 202);
+}
+
+.detail-modal .ant-btn {
+    height: 40px;
+    font-weight: 500;
+    border-radius: 6px;
+}
   

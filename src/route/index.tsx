@@ -1,15 +1,22 @@
 import RouteMapping from "./components/RouteMapping";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router";  // Updated to use correct import
-import Layout from "./../layouts/Layout";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ManagerLayout from "../layouts/manager/Layout";
+import AdminLayout from "../layouts/admin/LayoutAdmin";
+
 const routeMapping = new RouteMapping();
 
 function AppRouter() {
-
     return (
         <Router>
             <Routes>
                 {routeMapping.routes.map(({ path, component: Component, layout }, index) => {
                     const Page = routeMapping.renderComponent(Component);
+
+                    let SelectedLayout = ManagerLayout;
+                    if (layout === "RootLayoutAdmin") {
+                        SelectedLayout = AdminLayout;
+                    }
+
                     return (
                         <Route
                             key={index}
@@ -18,9 +25,7 @@ function AppRouter() {
                                 layout === "Blank" ? (
                                     Page
                                 ) : (
-                                    <Layout>
-                                        {Page}
-                                    </Layout>
+                                    <SelectedLayout>{Page}</SelectedLayout>
                                 )
                             }
                         />

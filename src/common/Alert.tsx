@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@/component/ui/alert";
 import { AlertCircle, X as CircleX } from "lucide-react";
 
 interface DangerProps {
