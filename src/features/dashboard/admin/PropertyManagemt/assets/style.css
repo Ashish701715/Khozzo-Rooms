@@ -1,0 +1,75 @@
+.ant-tabs-nav-list {
+    margin: 0 !important;
+}
+
+.number_tab {
+    background-color: #5F5F5F;
+    color: #fff;
+    border-radius: 15px;
+    padding: 0 6px;
+    margin: 0 9px 0;
+}
+.ant-tabs-tab-active    {
+    border: 1px solid #ffffff!important;
+    border-radius: 45px!important;
+    background: #DAF0FF!important;
+    padding: 0 20px!important;
+    color: #0e75bd!important;
+}
+.ant-tabs-tab {
+    border-radius: 45px;
+    background: #E7EAF0!important;
+    padding: 8px 20px!important;
+}
+.ant-tabs-tab .number_tab {
+    border: 1px solid #ffffff;
+    border-radius: 45px;
+    background: #5F5F5F;
+    padding: 0 6px;
+}
+.ant-tabs-tab-active  .number_tab {
+    background-color: #0e75bd;
+    color: #fff;
+    border-radius: 15px;
+    padding: 0 6px;
+    margin: 0 9px 0;
+}
+.input_color {
+    border-radius: 12px;
+border: 1px solid #D8E0F0;
+background: #FFF;
+box-shadow: 0px 4px 2px 0px rgba(216, 224, 240, 0.22);
+}
+
+.label_color{
+    color: #5F5F5F;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.main_page_div {
+    padding: 0 31px;
+}
+.main_card {
+    padding: 17px 41px;
+}
+input#file-upload {
+    display: none;
+}
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #0e75bd;
+    text-shadow: 0 0 0.25px currentcolor;
+}
+.bg-blue-600 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(14 117 189);
+}
+.ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
+    display: none;
+}
+.ant-btn-variant-solid {
+    color: #fff;
+    background: #0e75bd;
+}

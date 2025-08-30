@@ -4,13 +4,16 @@ const Home = lazy(() => import('../../../features/dashboard/admin/dashboard/inde
 const AuthPage = lazy(() => import('../../../features/Auth/layout'));
 const Table = lazy(() => import('../../../layouts/Table'));
 const TwoFactor = lazy(() => import('../../../features/Auth/Two_factor'));
-const PropertyManagment = lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/index'));
+const PropertyManagment = lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/PropertyList/Layout'));
 
 const PageNotFound = lazy(() => import('../../../ErrorPage/404'));
 
 
 //Property Routes
 const AddProperty = React.lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/addProperty'));
+const RoomList = React.lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/Appointment/Layout'));
+const Addroom = React.lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/Appointment/addroomform'));
+const TicketList = React.lazy(() => import('../../../features/dashboard/admin/PropertyManagemt/Ticket/Layout'));
 
 const adminRoute = [
     {
@@ -23,6 +26,27 @@ const adminRoute = [
     {
         path: '/property/add',
         component: AddProperty,
+        layout: '',
+        className: '',
+        is_Child: false,
+    },
+    {
+        path: 'property/roomlisting',
+        component: RoomList,
+        layout: '',
+        className: '',
+        is_Child: false,
+    },
+    {
+        path: 'property/form',
+        component: Addroom,
+        layout: '',
+        className: '',
+        is_Child: false,
+    },
+    {
+        path: 'property/Ticket',
+        component: TicketList,
         layout: '',
         className: '',
         is_Child: false,

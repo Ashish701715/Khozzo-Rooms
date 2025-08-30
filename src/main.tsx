@@ -6,7 +6,6 @@ import Route from './route/index';
 import ErrorBoundary from './layouts/ErrorBoundary';
 import { NextUIProvider } from '@nextui-org/react'
 import { Provider } from 'react-redux';
-import { createStore } from 'redux'
 import rootReducer from './reducers/store'
 import "/src/assets/style/globalScroll.css";
 
