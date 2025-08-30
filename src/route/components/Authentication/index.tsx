@@ -1,7 +1,7 @@
 import { lazy } from "react";
 
-const AuthPage = lazy(() => import('../../../features/Auth/layout'));
-const TwoFactor = lazy(() => import('../../../features/Auth/Two_factor'));
+const AuthPage = lazy(() => import('../../../pages/Auth/layout'));
+const TwoFactor = lazy(() => import('../../../pages/Auth/Two_factor'));
 
 class RouteMapping {
     routes = [
@@ -14,9 +14,9 @@ class RouteMapping {
             is_Child: false,
         },
         {
-            path: '/auth/two-factor/:client_id',
+            path: '/auth/two-factor',
             component: TwoFactor,
-            layout: 'Blank',
+            layout: '',
             className: '',
             is_Child: false,
         }
